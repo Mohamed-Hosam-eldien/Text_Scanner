@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnTakePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:backgroundTint="@color/purple_700"
+        android:src="@drawable/baseline_camera_alt_24"
+        app:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:useCompatPadding="true"
+        android:contentDescription="@null" />
+
+    <ImageView
+        android:id="@+id/imgEmpty"
+        android:src="@drawable/empty_note"
+        android:layout_width="match_parent"
+        android:padding="32dp"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:contentDescription="@null" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerNotes"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/note_layout_linear"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="140dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,17 +6,29 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+
+            <data android:mimeType="vnd.android.cursor.dir/image" />
+        </intent>
+    </queries>
 
     <application
-        android:allowBackup="true"
         android:name=".ScannerApp"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +38,10 @@
         android:theme="@style/Theme.TextScanner"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.ui.MainActivity"
+            android:name=".presentation.ui.review.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,20 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.PICK" />
-            <data android:mimeType="vnd.android.cursor.dir/image" />
-        </intent>
-    </queries>
 
 </manifest>
