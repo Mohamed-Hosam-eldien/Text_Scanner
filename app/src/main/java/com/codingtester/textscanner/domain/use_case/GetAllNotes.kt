@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 class GetAllNotes(
     private val noteRepository: NoteRepository
 ) {
-
     operator fun invoke(): Flow<List<Note>> {
         return noteRepository.getAllNotes()
     }

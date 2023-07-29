@@ -16,13 +16,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.SaveFileLayoutBinding
+import com.codingtester.textscanner.presentation.utils.ScannerHelper.getDateFromMille
 import dagger.hilt.android.AndroidEntryPoint
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment
 import org.apache.poi.xwpf.usermodel.XWPFDocument
-import java.io.*
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.io.File
+import java.io.FileOutputStream
+import java.io.PrintWriter
 
 @AndroidEntryPoint
 class SaveFileDialog : DialogFragment() {
@@ -30,8 +30,7 @@ class SaveFileDialog : DialogFragment() {
     private lateinit var binding: SaveFileLayoutBinding
 
     // this path that file will save on it
-    private var filePath: String =
-        Environment.getExternalStoragePublicDirectory("$DIRECTORY_DOCUMENTS/${getString(R.string.app_name)}").path
+    private var filePath: String = ""
 
     // this variable to know with file type user selected
     private var fileExe = TXT
@@ -41,12 +40,13 @@ class SaveFileDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // get data of note that user selected to save
         noteDate = arguments?.getLong(MainActivity.NOTE_DATE)
         noteTitle = arguments?.getString(MainActivity.NOTE_TITLE)
+        filePath = Environment.getExternalStoragePublicDirectory(
+            "$DIRECTORY_DOCUMENTS/${requireContext().getString(R.string.app_name)}"
+        ).path
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,7 +70,6 @@ class SaveFileDialog : DialogFragment() {
         binding.btnSave.setOnClickListener {
             handleSaveFileProcess()
         }
-
         return binding.root
     }
 
@@ -90,7 +89,7 @@ class SaveFileDialog : DialogFragment() {
                 }
             }
         } else {
-            binding.edtFileName.error = getString(R.string.required)
+            binding.edtFileName.error = requireActivity().getString(R.string.required)
         }
     }
 
@@ -102,7 +101,6 @@ class SaveFileDialog : DialogFragment() {
             TXT -> {
                 saveToTxtFile(fileName)
             }
-
             WORD -> {
                 saveToWordFile(fileName)
             }
@@ -118,7 +116,7 @@ class SaveFileDialog : DialogFragment() {
             print.close()
             Toast.makeText(
                 requireContext(),
-                getString(R.string.file_saved_successfully),
+                requireActivity().getString(R.string.file_saved_successfully),
                 Toast.LENGTH_SHORT
             ).show()
             dialog!!.dismiss()
@@ -126,15 +124,12 @@ class SaveFileDialog : DialogFragment() {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
         }
     }
-
     private fun saveToWordFile(fileName: String) {
         addParagraph(fileName, createWordDoc())
     }
-
     private fun createWordDoc(): XWPFDocument {
         return XWPFDocument()
     }
-
     private fun makeFileDir(): File {
         // make direction of our folder to save files in it
         val file = File(filePath)
@@ -173,11 +168,6 @@ class SaveFileDialog : DialogFragment() {
         saveToWordDoc(fileName, targetDoc)
     }
 
-    private fun getDateFromMille(noteDate: Long?): String {
-        val formatter = SimpleDateFormat("dd/MM/yyyy - hh:mm", Locale.getDefault())
-        return noteDate?.let { formatter.format(Date(noteDate)) }.toString()
-    }
-
     private fun saveToWordDoc(fileName: String, targetDoc: XWPFDocument) {
         // set name of document that found on path and save file by output stream
         val wordFile = File(makeFileDir(), "${fileName}.docx")
@@ -187,7 +177,7 @@ class SaveFileDialog : DialogFragment() {
             fileOut.close()
             Toast.makeText(
                 requireContext(),
-                getString(R.string.file_saved_successfully),
+                requireActivity().getString(R.string.file_saved_successfully),
                 Toast.LENGTH_SHORT
             )
                 .show()
@@ -198,7 +188,6 @@ class SaveFileDialog : DialogFragment() {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
         }
     }
-
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(), arrayOf(
@@ -207,7 +196,6 @@ class SaveFileDialog : DialogFragment() {
             ), 200
         )
     }
-
     private fun isStoragePermissionGranted(): Boolean {
         return (ContextCompat.checkSelfPermission(
             requireContext(),
@@ -218,13 +206,11 @@ class SaveFileDialog : DialogFragment() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED)
     }
-
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
-
     companion object {
         const val FONT_NAME = "Comic Sans MS"
         const val FONT_SIZE = 14

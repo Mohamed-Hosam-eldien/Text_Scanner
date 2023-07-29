@@ -3,16 +3,15 @@ package com.codingtester.textscanner.presentation.ui.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.domain.model.Note
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-
+import com.codingtester.textscanner.presentation.utils.ScannerHelper.copyToClipboard
+import com.codingtester.textscanner.presentation.utils.ScannerHelper.getDateFromMille
 
 class NoteAdapter(
     private val onClickNote: OnClickNote
@@ -37,15 +36,18 @@ class NoteAdapter(
         holder.clickToSave.setOnClickListener {
             onClickNote.onClickToSaveFile(note)
         }
-
         holder.clickToDelete.setOnClickListener {
             onClickNote.onClickToDelete(note)
+        }
+        holder.imgCopy.setOnClickListener {
+            copyToClipboard(note.content, holder.itemView.context)
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtNoteTitle: TextView = itemView.findViewById(R.id.txtNoteTitle)
         val txtNoteDate: TextView = itemView.findViewById(R.id.txtNoteDate)
+        val imgCopy: ImageView = itemView.findViewById(R.id.imgCopy)
         val clickToSave: CardView = itemView.findViewById(R.id.clickSaveToWord)
         val clickToDelete: CardView = itemView.findViewById(R.id.clickDelete)
     }
@@ -55,10 +57,5 @@ class NoteAdapter(
         val diffResult = DiffUtil.calculateDiff(recipeDiffUtil)
         noteList = newBoards
         diffResult.dispatchUpdatesTo(this)
-    }
-
-    private fun getDateFromMille(noteDate: Long?): String {
-        val formatter = SimpleDateFormat("dd/MM/yyyy - hh:mm", Locale.getDefault())
-        return noteDate?.let { formatter.format(Date(noteDate)) }.toString()
     }
 }

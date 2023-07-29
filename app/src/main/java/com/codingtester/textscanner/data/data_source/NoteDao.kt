@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.codingtester.textscanner.domain.model.Note
 import kotlinx.coroutines.flow.Flow
-
 @Dao
 interface NoteDao {
 

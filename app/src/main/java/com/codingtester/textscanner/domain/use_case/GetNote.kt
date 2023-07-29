@@ -6,7 +6,6 @@ import com.codingtester.textscanner.domain.repository.NoteRepository
 class GetNote(
     private val noteRepository: NoteRepository
 ) {
-
     suspend operator fun invoke(id: Int): Note {
         return noteRepository.getNoteById(id)
     }

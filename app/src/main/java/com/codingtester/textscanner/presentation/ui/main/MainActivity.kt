@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity(), OnClickNote {
 
     private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Any?>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

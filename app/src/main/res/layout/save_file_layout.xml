@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text"
-        android:text="@string/internal_storage_documents_text_recognizer"
+        android:text="@string/internal_storage_documents_text_scanner"
         android:gravity="center"
         android:textSize="12sp"
         android:layout_marginTop="12sp"

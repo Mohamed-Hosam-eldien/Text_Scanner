@@ -1,13 +1,15 @@
 package com.codingtester.textscanner.presentation.ui.review
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.ActivityReviewBinding
 import com.codingtester.textscanner.domain.model.Note
 import com.codingtester.textscanner.presentation.ui.main.MainActivity
+import com.codingtester.textscanner.presentation.utils.ScannerHelper.copyToClipboard
 import com.codingtester.textscanner.presentation.viewmodel.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +29,8 @@ class ReviewActivity : AppCompatActivity() {
         }
 
         binding.clickSave.setOnClickListener { saveNoteToFirebase() }
+
+        binding.clickCopy.setOnClickListener { copyToClipboard(binding.edtText.text.toString(), this) }
     }
 
     private fun saveNoteToFirebase() {
@@ -36,7 +40,7 @@ class ReviewActivity : AppCompatActivity() {
         viewModel.addNote(note)
 
         // after save we don't need this screen so we will close it
-        Toast.makeText(this, "Note has been added successfully", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.note_has_been_added_successfully), Toast.LENGTH_LONG).show()
         finish()
     }
 }

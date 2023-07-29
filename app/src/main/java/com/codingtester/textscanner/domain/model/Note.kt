@@ -10,5 +10,4 @@ data class Note(
     val content: String = "",
     val dateInMilliSecond: Long=0
 )
-
 class InvalidNoteException: Exception()

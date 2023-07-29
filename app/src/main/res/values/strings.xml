@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Text Scanner</string>
-    <string name="internal_storage_documents_text_recognizer">internal storage/Documents/Text Recognizer/..</string>
+    <string name="internal_storage_documents_text_scanner">internal storage/Documents/Text Scanner/..</string>
     <string name="save">Save Note</string>
     <string name="delete">Delete</string>
     <string name="word_file">Word file</string>
@@ -18,4 +18,6 @@
     <string name="failed_to_recognize_text_try_again">Failed to recognize text! try again</string>
     <string name="required">required</string>
     <string name="file_saved_successfully">File saved successfully</string>
+    <string name="note_has_been_added_successfully">Note has been added successfully</string>
+    <string name="copy">Copy</string>
 </resources>

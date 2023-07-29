@@ -19,7 +19,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     fun provideDatabase(app: Application): NoteDatabase {
         return Room.databaseBuilder(
@@ -28,7 +27,6 @@ object AppModule {
             NoteDatabase.DATABASE_NAME
         ).build()
     }
-
     @Singleton
     @Provides
     fun provideDataRepository(
@@ -36,7 +34,6 @@ object AppModule {
     ): NoteRepository {
         return NoteRepositoryImpl(noteDatabase.noteDao())
     }
-
     @Singleton
     @Provides
     fun provideUseCase(
