@@ -29,7 +29,6 @@ class SaveFileDialog : DialogFragment() {
 
     private lateinit var binding: SaveFileLayoutBinding
 
-    // this path that file will save on it
     private var filePath: String = ""
 
     // this variable to know with file type user selected
@@ -43,6 +42,8 @@ class SaveFileDialog : DialogFragment() {
         // get data of note that user selected to save
         noteDate = arguments?.getLong(MainActivity.NOTE_DATE)
         noteTitle = arguments?.getString(MainActivity.NOTE_TITLE)
+
+        // this path that file will save on it
         filePath = Environment.getExternalStoragePublicDirectory(
             "$DIRECTORY_DOCUMENTS/${requireContext().getString(R.string.app_name)}"
         ).path

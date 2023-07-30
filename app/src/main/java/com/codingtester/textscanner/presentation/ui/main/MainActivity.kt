@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -24,6 +25,7 @@ import com.codingtester.textscanner.domain.model.Note
 import com.codingtester.textscanner.presentation.ui.review.ReviewActivity
 import com.codingtester.textscanner.presentation.viewmodel.NoteViewModel
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.theartofdev.edmodo.cropper.CropImage
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity(), OnClickNote {
     private val viewModel by viewModels<NoteViewModel>()
     private lateinit var binding: ActivityMainBinding
     private val noteAdapter by lazy { NoteAdapter(this) }
+    private val numbers: MutableList<String> = emptyList<String>().toMutableList()
 
     private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri?>() {
         override fun createIntent(context: Context, input: Any?): Intent {
@@ -140,7 +143,14 @@ class MainActivity : AppCompatActivity(), OnClickNote {
 
         //process the image
         recognizer.process(inputImage)
-            .addOnSuccessListener { textAfterRecognize -> navigateToReviewFragment(textAfterRecognize.text)
+            .addOnSuccessListener { textAfterRecognize ->
+                numbers.clear()
+                textAfterRecognize.textBlocks.forEach { block: Text.TextBlock ->
+                    Log.e("TAG", "block --> :  ${block.text}")
+                    getNumbersFromTextBlock(block.text)
+                }
+                Log.e("TAG", "final list --> :  $numbers")
+                navigateToReviewFragment(textAfterRecognize.text)
             }.addOnFailureListener {
                 Toast.makeText(
                     this@MainActivity,
@@ -149,6 +159,18 @@ class MainActivity : AppCompatActivity(), OnClickNote {
                     Toast.LENGTH_LONG
                 ).show()
             }
+    }
+
+    private fun getNumbersFromTextBlock(text: String) {
+        Log.e("TAG", "block to list -- > : ${stringToWords(text)}")
+        numbers += stringToWords(text)
+    }
+
+    private fun stringToWords(text : String): List<String> {
+        return text.trim()
+            .splitToSequence(' ')
+            .filter { it.isNotEmpty() }
+            .toList()
     }
 
     // after get text from image we will move to review screen
