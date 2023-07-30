@@ -83,13 +83,13 @@ class MainActivity : AppCompatActivity(), OnClickNote {
         }
 
         // before take photo we will check permission then open camera
-        binding.btnTakePhoto.setOnClickListener {
-            if (isCameraPermissionGranted()) {
-                cropActivityResultLauncher.launch(null)
-            } else {
-                requestCameraPermission()
-            }
-        }
+//        binding.btnTakePhoto.setOnClickListener {
+//            if (isCameraPermissionGranted()) {
+//                cropActivityResultLauncher.launch(null)
+//            } else {
+//                requestCameraPermission()
+//            }
+//        }
     }
 
     private fun setNotesData(notes: List<Note>) {
