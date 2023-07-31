@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.SaveFileLayoutBinding
+import com.codingtester.textscanner.presentation.utils.Constants.NOTE_DATE
+import com.codingtester.textscanner.presentation.utils.Constants.NOTE_TITLE
 import com.codingtester.textscanner.presentation.utils.ScannerHelper.getDateFromMille
 import dagger.hilt.android.AndroidEntryPoint
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment
@@ -40,8 +42,8 @@ class SaveFileDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // get data of note that user selected to save
-        noteDate = arguments?.getLong(MainActivity.NOTE_DATE)
-        noteTitle = arguments?.getString(MainActivity.NOTE_TITLE)
+        noteDate = arguments?.getLong(NOTE_DATE)
+        noteTitle = arguments?.getString(NOTE_TITLE)
 
         // this path that file will save on it
         filePath = Environment.getExternalStoragePublicDirectory(

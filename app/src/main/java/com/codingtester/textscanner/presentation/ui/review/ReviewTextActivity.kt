@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.ActivityReviewBinding
 import com.codingtester.textscanner.domain.model.Note
-import com.codingtester.textscanner.presentation.ui.main.MainActivity
+import com.codingtester.textscanner.presentation.utils.Constants.TEXT_AFTER_REC
 import com.codingtester.textscanner.presentation.utils.ScannerHelper.copyToClipboard
 import com.codingtester.textscanner.presentation.viewmodel.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReviewActivity : AppCompatActivity() {
+class ReviewTextActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<NoteViewModel>()
     private lateinit var binding: ActivityReviewBinding
@@ -24,7 +24,7 @@ class ReviewActivity : AppCompatActivity() {
         binding = ActivityReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        intent.getStringExtra(MainActivity.TEXT_AFTER_REC)?.let { content ->
+        intent.getStringExtra(TEXT_AFTER_REC)?.let { content ->
             binding.edtText.setText(content)
         }
 

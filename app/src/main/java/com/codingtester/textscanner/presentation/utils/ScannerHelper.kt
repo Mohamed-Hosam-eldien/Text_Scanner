@@ -10,7 +10,6 @@ import java.util.Date
 import java.util.Locale
 
 object ScannerHelper {
-
     fun getDateFromMille(noteDate: Long?): String {
         val formatter = SimpleDateFormat("dd/MM/yyyy - hh:mm", Locale.getDefault())
         return noteDate?.let { formatter.format(Date(noteDate)) }.toString()

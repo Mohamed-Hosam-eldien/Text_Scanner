@@ -20,4 +20,10 @@
     <string name="file_saved_successfully">File saved successfully</string>
     <string name="note_has_been_added_successfully">Note has been added successfully</string>
     <string name="copy">Copy</string>
+    <string name="please_update_your_Google_Play_Service_on_your_device">recognition module not be downloaded, please update your Google Play Service on your device</string>
+    <string name="numbers">Numbers</string>
+    <string name="text">Text</string>
+    <string name="text_scanner">Text Scanner</string>
+    <string name="choose_the_type_of_scan">Choose the type of scan</string>
+    <string name="numbers_detected">numbers detected</string>
 </resources>
