@@ -6,29 +6,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="8dp"
-        android:background="@color/dark_blue"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/review_text"
-            android:gravity="start"
-            android:textSize="22sp"
-            android:layout_gravity="start"
-            android:textColor="@color/white"/>
-
-    </androidx.appcompat.widget.Toolbar>
-
     <EditText
         android:id="@+id/edtText"
         app:layout_constraintBottom_toTopOf="@id/buttonsLayout"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="8dp"
         android:padding="12dp"
         android:gravity="top"

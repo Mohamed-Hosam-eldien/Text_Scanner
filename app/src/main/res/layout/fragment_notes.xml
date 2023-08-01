@@ -4,27 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.ui.notes.NotesActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="8dp"
-        android:background="@color/dark_blue"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/saved_notes"
-            android:gravity="start"
-            android:textSize="18sp"
-            android:layout_gravity="start"
-            android:textColor="@color/white"/>
-
-    </androidx.appcompat.widget.Toolbar>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/imgEmpty"
@@ -41,7 +21,7 @@
         android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/note_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

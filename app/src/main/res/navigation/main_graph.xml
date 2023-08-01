@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
+
+    <action
+        android:id="@+id/action_to_notesFragment"
+        app:destination="@id/notesFragment"
+        app:enterAnim="@android:anim/slide_in_left" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.codingtester.textscanner.presentation.ui.home.HomeFragment"
+        android:label="@string/text_scanner"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_reviewTextFragment"
+            app:destination="@id/reviewTextFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_reviewNumbersFragment"
+            app:destination="@id/reviewNumbersFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewTextFragment"
+        android:name="com.codingtester.textscanner.presentation.ui.review.ReviewTextFragment"
+        android:label="@string/review_text"
+        tools:layout="@layout/fragment_review_text" />
+    <fragment
+        android:id="@+id/reviewNumbersFragment"
+        android:name="com.codingtester.textscanner.presentation.ui.review.ReviewNumbersFragment"
+        android:label="@string/review_numbers"
+        tools:layout="@layout/fragment_review_numbers" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.codingtester.textscanner.presentation.ui.notes.NotesFragment"
+        android:label="@string/saved_notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_reviewTextFragment"
+            app:destination="@id/reviewTextFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+</navigation>

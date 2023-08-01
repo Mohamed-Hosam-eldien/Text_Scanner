@@ -81,4 +81,8 @@ dependencies {
 
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.5.2"
+
+    // navigation component
+    implementation "androidx.navigation:navigation-fragment:2.6.0"
+    implementation "androidx.navigation:navigation-ui:2.6.0"
 }

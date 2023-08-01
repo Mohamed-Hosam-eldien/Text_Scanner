@@ -1,22 +1,31 @@
 package com.codingtester.textscanner.presentation.ui.review
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codingtester.textscanner.databinding.ActivityReviewNumbersBinding
-import com.codingtester.textscanner.presentation.utils.Constants.NUMBERS_LIST
+import com.codingtester.textscanner.databinding.FragmentReviewNumbersBinding
+import com.codingtester.textscanner.presentation.utils.Constants
 
-class ReviewNumbersActivity : AppCompatActivity() {
+class ReviewNumbersFragment : Fragment() {
 
-    private lateinit var binding: ActivityReviewNumbersBinding
+    private lateinit var binding: FragmentReviewNumbersBinding
     private var numberList = ArrayList<String>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityReviewNumbersBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentReviewNumbersBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
-        intent.getStringArrayListExtra(NUMBERS_LIST)?.let {
+    override fun onViewCreated(view: View, bundle: Bundle?) {
+        super.onViewCreated(view, bundle)
+
+        arguments?.getStringArrayList(Constants.NUMBERS_LIST)?.let {
             numberList = it
         }
 
@@ -24,7 +33,7 @@ class ReviewNumbersActivity : AppCompatActivity() {
         val repeatedItems: Map<String, Int> = numberList.groupingBy { it }.eachCount()
         binding.recyclerRepetition.apply {
             adapter = RepeatNumbersAdapter(repeatedItems)
-            layoutManager = LinearLayoutManager(this@ReviewNumbersActivity)
+            layoutManager = LinearLayoutManager(requireActivity())
         }
 
         // set list of numbers and number detected count
