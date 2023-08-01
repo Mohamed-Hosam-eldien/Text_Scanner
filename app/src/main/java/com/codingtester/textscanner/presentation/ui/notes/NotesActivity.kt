@@ -11,9 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.ActivityNotesBinding
 import com.codingtester.textscanner.domain.model.Note
-import com.codingtester.textscanner.presentation.ui.main.NoteAdapter
-import com.codingtester.textscanner.presentation.ui.main.OnClickNote
-import com.codingtester.textscanner.presentation.ui.main.SaveFileDialog
 import com.codingtester.textscanner.presentation.utils.Constants.NOTE_DATE
 import com.codingtester.textscanner.presentation.utils.Constants.NOTE_TITLE
 import com.codingtester.textscanner.presentation.viewmodel.NoteViewModel

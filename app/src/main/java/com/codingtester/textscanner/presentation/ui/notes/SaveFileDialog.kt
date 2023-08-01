@@ -1,4 +1,4 @@
-package com.codingtester.textscanner.presentation.ui.main
+package com.codingtester.textscanner.presentation.ui.notes
 
 import android.Manifest
 import android.content.pm.PackageManager

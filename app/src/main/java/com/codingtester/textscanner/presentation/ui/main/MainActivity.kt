@@ -13,10 +13,12 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.text.isDigitsOnly
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.ActivityMainBinding
 import com.codingtester.textscanner.presentation.ui.review.ReviewNumbersActivity
 import com.codingtester.textscanner.presentation.ui.review.ReviewTextActivity
+import com.codingtester.textscanner.presentation.utils.Constants.NUMBERS_LIST
 import com.codingtester.textscanner.presentation.utils.Constants.TEXT_AFTER_REC
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
@@ -113,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             showMessage(getString(R.string.failed_to_recognize_text_try_again))
         } else {
             Intent(this, ReviewNumbersActivity::class.java).apply {
-                this.putStringArrayListExtra("numbers", numberList)
+                this.putStringArrayListExtra(NUMBERS_LIST, numberList)
                 startActivity(this)
             }
         }
@@ -124,7 +126,7 @@ class MainActivity : AppCompatActivity() {
     private fun convertTextToList(text : String): List<String> {
         return text.trim()
             .splitToSequence(' ')
-            .filter { it.isNotEmpty() }
+            .filter { it.isNotEmpty() && it.isDigitsOnly() }
             .toList()
     }
 

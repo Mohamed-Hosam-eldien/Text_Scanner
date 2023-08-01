@@ -1,4 +1,4 @@
-package com.codingtester.textscanner.presentation.ui.main
+package com.codingtester.textscanner.presentation.ui.notes
 
 import android.view.LayoutInflater
 import android.view.View

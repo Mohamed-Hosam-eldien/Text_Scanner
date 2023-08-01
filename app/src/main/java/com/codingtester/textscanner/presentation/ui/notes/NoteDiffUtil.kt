@@ -1,4 +1,4 @@
-package com.codingtester.textscanner.presentation.ui.main
+package com.codingtester.textscanner.presentation.ui.notes
 
 import androidx.recyclerview.widget.DiffUtil
 import com.codingtester.textscanner.domain.model.Note

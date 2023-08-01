@@ -26,4 +26,11 @@
     <string name="text_scanner">Text Scanner</string>
     <string name="choose_the_type_of_scan">Choose the type of scan</string>
     <string name="numbers_detected">numbers detected</string>
+    <string name="sum_of_numbers">Sum of numbers</string>
+    <string name="greatest_number">Greatest number</string>
+    <string name="repetition">Repetition</string>
+    <string name="number">number</string>
+    <string name="repeated">repeated</string>
+    <string name="smallest_number">Smallest number</string>
+    <string name="review_numbers">Review Numbers</string>
 </resources>

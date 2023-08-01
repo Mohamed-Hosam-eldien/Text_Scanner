@@ -5,172 +5,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     tools:context=".presentation.ui.review.ReviewNumbersActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardNumber"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardUseCompatPadding="true">
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="8dp"
+        android:background="@color/dark_blue"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_numbers"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_height="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="8dp"
-            android:orientation="vertical">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <TextView
-                android:id="@+id/txtDetectedNumbers"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNumber"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="5"
-                android:textColor="#269A00"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/txtDetected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                app:layout_constraintTop_toTopOf="@id/txtDetectedNumbers"
-                app:layout_constraintStart_toEndOf="@id/txtDetectedNumbers"
-                app:layout_constraintBottom_toBottomOf="@id/txtDetectedNumbers"
-                android:text="@string/numbers_detected"
-                android:textSize="16sp"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtNumbers"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/txtDetectedNumbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#269A00"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="5" />
+
+                    <TextView
+                        android:id="@+id/txtDetected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/numbers_detected"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/txtDetectedNumbers"
+                        app:layout_constraintStart_toEndOf="@id/txtDetectedNumbers"
+                        app:layout_constraintTop_toTopOf="@id/txtDetectedNumbers" />
+
+                    <TextView
+                        android:id="@+id/txtNumbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtDetectedNumbers"
+                        tools:text="[22,33,44,44,33]" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRepetition"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/txtDetectedNumbers"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="[22,33,44,44,33]"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"/>
+                app:cardBackgroundColor="@color/light_yellow"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cardNumber">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtRepetition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repetition"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="#EEEEEE"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/number"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/repeated"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerRepetition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtRepetition" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#E1FBC3"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cardRepetition">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtSum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sum_of_numbers"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerRepetition" />
+
+                    <TextView
+                        android:id="@+id/txtTotalSum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtGreatestNumber"
+                        tools:text="77" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardGreatest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/light_blue"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cardSum">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtGreatest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/greatest_number"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerRepetition" />
+
+                    <TextView
+                        android:id="@+id/txtGreatestNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtGreatest"
+                        tools:text="77" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSmallest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/light_pink"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cardGreatest">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtSmallest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/smallest_number"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtGreatestNumber" />
+
+                    <TextView
+                        android:id="@+id/txtSmallestNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtSmallest"
+                        tools:text="23" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardRepetition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cardNumber"
-        app:cardBackgroundColor="@color/light_yellow"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtRepetition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Repetition"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerRepetition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtRepetition"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardGreatest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/light_blue"
-        app:layout_constraintTop_toBottomOf="@id/cardRepetition"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtGreatestNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recyclerRepetition"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Greatest Number"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/recyclerGreatestNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="12dp"
-                tools:text="77"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtGreatestNumber"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardSmallest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/light_pink"
-        app:layout_constraintTop_toBottomOf="@id/cardGreatest"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtSmallestNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recyclerGreatestNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Smallest Number"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/recyclerSmallestNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="12dp"
-                tools:text="23"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtSmallestNumber"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
