@@ -18,10 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/review_text"
-            android:gravity="center"
+            android:gravity="start"
             android:textSize="22sp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
+            android:layout_gravity="start"
             android:textColor="@color/white"/>
 
     </androidx.appcompat.widget.Toolbar>
@@ -64,7 +63,7 @@
             android:layout_weight="1"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="#03B60B">
+            app:cardBackgroundColor="@color/green">
 
             <LinearLayout
                 android:layout_width="wrap_content"

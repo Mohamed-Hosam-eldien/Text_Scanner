@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.ActivityMainBinding
+import com.codingtester.textscanner.presentation.ui.notes.NotesActivity
 import com.codingtester.textscanner.presentation.ui.review.ReviewNumbersActivity
 import com.codingtester.textscanner.presentation.ui.review.ReviewTextActivity
 import com.codingtester.textscanner.presentation.utils.Constants.NUMBERS_LIST
@@ -72,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         binding.cardNumber.setOnClickListener {
             selectedType = ScannerType.NUMBERS
             openCamera()
+        }
+
+        binding.imgNotes.setOnClickListener {
+            Intent(this, NotesActivity::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 

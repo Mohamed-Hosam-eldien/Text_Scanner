@@ -20,14 +20,14 @@ class ReviewNumbersActivity : AppCompatActivity() {
             numberList = it
         }
 
-        // set repeat numbers to recyclerView
+        // set repeated numbers to recyclerView
         val repeatedItems: Map<String, Int> = numberList.groupingBy { it }.eachCount()
         binding.recyclerRepetition.apply {
             adapter = RepeatNumbersAdapter(repeatedItems)
             layoutManager = LinearLayoutManager(this@ReviewNumbersActivity)
         }
 
-        // set list of numbers and number detected
+        // set list of numbers and number detected count
         binding.txtDetectedNumbers.text = numberList.size.toString()
         binding.txtNumbers.text = numberList.toString()
 

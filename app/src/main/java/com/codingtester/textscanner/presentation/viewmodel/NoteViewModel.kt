@@ -22,21 +22,14 @@ class NoteViewModel @Inject constructor(
     init {
         getAllNotes()
     }
-
     fun addNote(note: Note) = viewModelScope.launch {
         useCases.addNote.invoke(note)
     }
-
-    fun getNoteById(noteId: Int) = viewModelScope.launch {
-        useCases.getNote.invoke(noteId)
-    }
-
     private fun getAllNotes() = viewModelScope.launch {
         useCases.getAllNotes.invoke().collectLatest {
             _noteState.value = it
         }
     }
-
     fun deleteNote(note: Note) = viewModelScope.launch {
         useCases.deleteNote.invoke(note)
     }

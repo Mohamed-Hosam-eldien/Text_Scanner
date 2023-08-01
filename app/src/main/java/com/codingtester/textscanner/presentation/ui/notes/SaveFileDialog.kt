@@ -80,7 +80,7 @@ class SaveFileDialog : DialogFragment() {
         val fileName = binding.edtFileName.text.toString()
 
         if (fileName.isNotEmpty()) {
-            // if Android api >= Q we don't need to permission but else we need to permission
+            // if Android api >= Q we don't need to permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 saveFileInDevice(fileName)
             } else {

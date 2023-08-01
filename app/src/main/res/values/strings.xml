@@ -34,4 +34,7 @@
     <string name="smallest_number">Smallest number</string>
     <string name="review_numbers">Review Numbers</string>
     <string name="review_text">Review Text</string>
+    <string name="saved_notes">Saved Notes</string>
+    <string name="last_modified">Last modified</string>
+
 </resources>

@@ -14,7 +14,6 @@ object ScannerHelper {
         val formatter = SimpleDateFormat("dd/MM/yyyy - hh:mm", Locale.getDefault())
         return noteDate?.let { formatter.format(Date(noteDate)) }.toString()
     }
-
     fun copyToClipboard(text: String, context: Context) {
         val clipboard: ClipboardManager = context.getSystemService(AppCompatActivity.CLIPBOARD_SERVICE) as ClipboardManager
         val textToCopy = ClipData.newPlainText("label", text)

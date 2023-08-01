@@ -5,4 +5,5 @@ import com.codingtester.textscanner.domain.model.Note
 interface OnClickNote {
     fun onClickToDelete(note: Note)
     fun onClickToSaveFile(note: Note)
+    fun onClickToCard(note: Note)
 }

@@ -22,7 +22,7 @@ class NoteAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.note_layout_linear, parent, false)
+                .inflate(R.layout.note_layout, parent, false)
         )
     }
 
@@ -30,14 +30,20 @@ class NoteAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = noteList[position]
-        holder.txtNoteTitle.text = note.content
-        holder.txtNoteDate.text = getDateFromMille(note.dateInMilliSecond)
+        holder.txtNoteTitle.text = textFormat(note.content)
+        holder.txtNoteDate.text = holder.itemView.context.getString(
+            R.string.last_modified)
+            .plus(" : ")
+            .plus(getDateFromMille(note.dateInMilliSecond))
 
         holder.clickToSave.setOnClickListener {
             onClickNote.onClickToSaveFile(note)
         }
         holder.clickToDelete.setOnClickListener {
             onClickNote.onClickToDelete(note)
+        }
+        holder.itemView.setOnClickListener {
+            onClickNote.onClickToCard(note)
         }
         holder.imgCopy.setOnClickListener {
             copyToClipboard(note.content, holder.itemView.context)
@@ -50,6 +56,15 @@ class NoteAdapter(
         val imgCopy: ImageView = itemView.findViewById(R.id.imgCopy)
         val clickToSave: CardView = itemView.findViewById(R.id.clickSaveToWord)
         val clickToDelete: CardView = itemView.findViewById(R.id.clickDelete)
+    }
+
+    // to prevent show all text character on text view
+    private fun textFormat(text: String): String {
+        return if(text.length <= 80) {
+            text
+        } else {
+            text.substring(0, 80).plus("...")
+        }
     }
 
     fun updatePopularList(newBoards: List<Note>) {

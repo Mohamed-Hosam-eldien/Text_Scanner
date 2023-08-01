@@ -8,7 +8,6 @@ import com.codingtester.textscanner.domain.repository.NoteRepository
 import com.codingtester.textscanner.domain.use_case.AddNote
 import com.codingtester.textscanner.domain.use_case.DeleteNote
 import com.codingtester.textscanner.domain.use_case.GetAllNotes
-import com.codingtester.textscanner.domain.use_case.GetNote
 import com.codingtester.textscanner.domain.use_case.NoteUseCases
 import dagger.Module
 import dagger.Provides
@@ -41,7 +40,6 @@ object AppModule {
     ): NoteUseCases {
         return NoteUseCases(
             addNote = AddNote(repository),
-            getNote = GetNote(repository),
             getAllNotes = GetAllNotes(repository),
             deleteNote = DeleteNote(repository)
         )
