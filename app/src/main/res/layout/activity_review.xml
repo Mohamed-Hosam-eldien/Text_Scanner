@@ -6,20 +6,30 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/imgSource"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="32dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/buttonsLayout"
-        android:contentDescription="@null" />
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="8dp"
+        android:background="@color/dark_blue"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_text"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/edtText"
         app:layout_constraintBottom_toTopOf="@id/buttonsLayout"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_margin="8dp"
         android:padding="12dp"
         android:gravity="top"
@@ -54,7 +64,7 @@
             android:layout_weight="1"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="#EF6236">
+            app:cardBackgroundColor="#03B60B">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -91,7 +101,7 @@
             android:layout_weight="1"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="#3F51B5">
+            app:cardBackgroundColor="@color/dark_blue">
 
             <LinearLayout
                 android:layout_width="wrap_content"
