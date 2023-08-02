@@ -14,17 +14,22 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import com.codingtester.textscanner.R
 import com.codingtester.textscanner.databinding.SaveFileLayoutBinding
 import com.codingtester.textscanner.presentation.utils.Constants.NOTE_DATE
 import com.codingtester.textscanner.presentation.utils.Constants.NOTE_TITLE
 import com.codingtester.textscanner.presentation.utils.ScannerHelper.getDateFromMille
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment
 import org.apache.poi.xwpf.usermodel.XWPFDocument
 import java.io.File
 import java.io.FileOutputStream
 import java.io.PrintWriter
+
 
 @AndroidEntryPoint
 class SaveFileDialog : DialogFragment() {
@@ -63,7 +68,6 @@ class SaveFileDialog : DialogFragment() {
                 R.id.radioTxt -> {
                     fileExe = TXT
                 }
-
                 R.id.radioWord -> {
                     fileExe = WORD
                 }
@@ -102,7 +106,9 @@ class SaveFileDialog : DialogFragment() {
         // check which file type user selected
         when (fileExe) {
             TXT -> {
-                saveToTxtFile(fileName)
+                lifecycleScope.launch {
+                    saveToTxtFile(fileName)
+                }
             }
             WORD -> {
                 saveToWordFile(fileName)
@@ -128,7 +134,9 @@ class SaveFileDialog : DialogFragment() {
         }
     }
     private fun saveToWordFile(fileName: String) {
-        addParagraph(fileName, createWordDoc())
+        lifecycleScope.launch(Dispatchers.IO) {
+            addParagraph(fileName, createWordDoc())
+        }
     }
     private fun createWordDoc(): XWPFDocument {
         return XWPFDocument()
@@ -144,7 +152,7 @@ class SaveFileDialog : DialogFragment() {
         return file
     }
 
-    private fun addParagraph(fileName: String, targetDoc: XWPFDocument) {
+    private suspend fun addParagraph(fileName: String, targetDoc: XWPFDocument) {
         //creating a paragraph in our document and setting its alignment
         val paragraph = targetDoc.createParagraph()
         paragraph.alignment = ParagraphAlignment.LEFT
@@ -171,26 +179,30 @@ class SaveFileDialog : DialogFragment() {
         saveToWordDoc(fileName, targetDoc)
     }
 
-    private fun saveToWordDoc(fileName: String, targetDoc: XWPFDocument) {
+    private suspend fun saveToWordDoc(fileName: String, targetDoc: XWPFDocument) {
         // set name of document that found on path and save file by output stream
         val wordFile = File(makeFileDir(), "${fileName}.docx")
         try {
-            val fileOut = FileOutputStream(wordFile)
-            targetDoc.write(fileOut)
-            fileOut.close()
-            Toast.makeText(
-                requireContext(),
-                requireActivity().getString(R.string.file_saved_successfully),
-                Toast.LENGTH_SHORT
-            )
-                .show()
-            dialog!!.dismiss()
+            withContext(Dispatchers.IO) {
+                val fileOut = FileOutputStream(wordFile)
+                targetDoc.write(fileOut)
+                fileOut.close()
+            }
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(),
+                    getString(R.string.file_saved_successfully),
+                    Toast.LENGTH_SHORT).show()
+                dialog!!.dismiss()
+            }
         } catch (e: Exception) {
-            binding.btnSave.visibility = View.VISIBLE
-            binding.progress.visibility = View.GONE
-            Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+            withContext(Dispatchers.Main) {
+                binding.btnSave.visibility = View.VISIBLE
+                binding.progress.visibility = View.GONE
+                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(), arrayOf(
