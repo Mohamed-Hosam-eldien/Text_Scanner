@@ -48,13 +48,13 @@ class ReviewTextFragment : Fragment() {
     }
 
     private fun saveNoteToFirebase() {
-        binding.clickSave.visibility = View.GONE
+        binding.clickSave.visibility = View.INVISIBLE
         binding.reviewProgressBar.visibility = View.VISIBLE
         val note = Note(content = binding.edtText.text.toString(),dateInMilliSecond =  System.currentTimeMillis())
         viewModel.addNote(note)
 
         // after save we don't need this screen so we will close it
-        Toast.makeText(requireActivity(), getString(R.string.note_has_been_added_successfully), Toast.LENGTH_LONG).show()
         findNavController().popBackStack(R.id.reviewTextFragment, true)
+        Toast.makeText(requireActivity(), getString(R.string.note_has_been_added_successfully), Toast.LENGTH_LONG).show()
     }
 }
