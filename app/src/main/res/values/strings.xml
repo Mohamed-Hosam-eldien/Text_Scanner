@@ -3,7 +3,7 @@
     <string name="internal_storage_documents_text_scanner">internal storage/Documents/Text Scanner/..</string>
     <string name="save">Save Note</string>
     <string name="delete">Delete</string>
-    <string name="word_file">Word file</string>
+    <string name="word_file">Word File</string>
     <string name="file_name">File Name…</string>
     <string name="save_file">Save File</string>
     <string name="save_new_file">Save New File</string>
@@ -36,4 +36,5 @@
     <string name="review_text">Review Text</string>
     <string name="saved_notes">Saved Notes</string>
     <string name="last_modified">Last modified</string>
+    <string name="copied">Copied</string>
 </resources>
